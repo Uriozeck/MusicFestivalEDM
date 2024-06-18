@@ -1,0 +1,31 @@
+// Archivo _index.scss su función es tener todos los estilos para no llenar el archivo app.scss
+
+//importando archivos externos
+
+/*Una ventaja de sass que no tiene css es que se pueden crear diferentes archivos y que estos se compilen en el app.scss principal, pero estos tienen sus propias reglas
+1. al crear un archivo este debe de empezar co un guión bajo, por ejemplo, _nuevoarchivo 
+2. se tiene que importar a la hoja principal con @use 'nombre del archivo' */
+
+// @use 'variables'; //importando un archivo de manera normal
+//@use 'variables' as *; //importando un archivo indicandole que no usará el namespace antes de la variable, quiere decir que a las variables no se les tendrá que indicar el nombre del archivo y después el nombre de la variable 
+//@use 'variables' as v; //Como el ejemplo anterior con el asterisco se le indica que no usa un namespace o un alias, en este caso la letra v es un alias y se le puede posteriormente indicar a la variable ese alias 
+//@use 'base/variables' as v; //se hizo un cambio pasando el archivo varables a una carpeta llamada base
+@forward 'base/normalize'; //Agregando normalize
+@forward 'base/variables'; //@use y @forward son usados para extraer el código de los archivos externos, la diferencias es que @forward no usa namespaces o alias. se usa @use cuando se requiere traer valores individuales como las variables y se usa @forward cuando se va a traer todo el código de un archivo que no tenga variables, mixins, funciones etc.
+@forward 'globales';
+
+/* Este body es explicativo
+body { 
+/*para asignar la variable se usa solamente el nombre de la variable*/
+    // font-family: $fuente_principal;
+/*si la variable viene de un archivo externo se tiene que indicar el nombredel archivo, se coloca un punto y enseguida el nombre de la variable*/
+    // font-family: variables.$fuente_principal;
+/*Para evitar usar la sintaxis anterior. Al importar el archivo externo se puede indicar un (as *;) que le dirá que importe todo*/
+    // font-family: $fuente_principal;
+    // font-family: variables.$fuente_principal;
+/*También se le puede indicar un alias a la variable. Al importar el archivo externo se puede indicar un (as v;) que le dirá que la variable viene desde el archivo con alias v para identificar de donde se están extrayendo los archivos*
+    font-family: v.$fuente_principal;
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: v.$negro;
+}*/

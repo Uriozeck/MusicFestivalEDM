@@ -1,0 +1,3 @@
+// Archivo principal, aquí se cargan los estilos de todo el css
+@forward 'base'; // se están extrayendo todos los estilos de todos los archivos dentro de la carpeta base
+@forward 'layout';

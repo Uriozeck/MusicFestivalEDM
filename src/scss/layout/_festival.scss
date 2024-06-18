@@ -1,0 +1,24 @@
+
+
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.sobre-festival {
+    @include m.contenedor;
+
+    // Agregando un mixin dentro de otro mixin
+    @include m.tablet {
+        @include m.grid(2, 5rem); // este mixin tiene parametros, por lo cual en esta propiedad se le pasa el argumento similar a las funciones en js, aqui sus argumentos son el numero de columnas y el espacio del gap
+    }
+}
+
+.contenido-festival {
+    margin-top: 5rem;
+    h2 {
+        margin-bottom: 2rem;
+    }
+    .fecha {
+        color: v.$verde;
+        font-weight: 700;
+    }
+}

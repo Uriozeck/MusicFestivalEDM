@@ -1,0 +1,94 @@
+// Aquí se crearán todos los mixins para una clase en especifico y para mediaqueries
+
+// importando variables
+@use 'variables' as v;
+//El uso de @mixin normalmente es para agregar código de un media querie
+//Generando un @mixin, se usa @mixin y el nombre de este, dentro se coloca el código
+// @mixin contenedor {
+//     width: 95%;
+// }
+
+// usando un @mixin. Para usar un mixin sele tiene que llamar usando @include y el nombre del mixin
+// .header-contenedor {
+//     @include contenedor();
+// }
+
+//mixin para un tamaño de telefonos moviles, este ejemplo no es tan recomendable 
+// @mixin telefono { 
+//     @media (min-width: 768px) {
+//         .contenedor {
+//             width: 100px;
+//         }
+//     }
+// }
+
+//generando un mixin para un mediaquerie, se le asigna un nombre al mixin, después se le indica el mediaquerie, este contenrá un @content
+// @mixin telefono {
+//     @media (min-width: 768px) {
+//         @content; // @content se encarga de leer los estilos que se agreguen a la propiedad 
+//     }
+// }
+//asignación de los estilos. En este ejemplo el @include lee que se usó un mixin, se le asigna el nombre del mixin que en este caso se llama telefono y dentro se colocan los estilos que va a contener el media querie
+// @include m.telefono {
+//     width: 100%;
+// }
+
+// Mixins media queries
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+@mixin desktopXL {
+    @media (min-width: v.$desktopXL) {
+        @content;
+    }
+}
+
+// Mixin contenedor
+@mixin contenedor {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+// mixin grid
+
+// Para nno crear mixins con diferentes propiedades casi duplicando el código como el ejemplo siguiente:
+/* 
+@mixin grid-2columnas{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+}
+@mixin grid-3columnas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5rem;
+}
+
+Se ocupan mixins "inteligentes*. Los mixins pueden contener parametros y cuando se agreguen con @include ahí se le asignan los argumentos como en las funciones de js, los parametros que se le pasen a las propiedades son ilimitados
+En el siguiente ejemplo se usan parametros para indicar las columnas y el espacio del gap*/
+
+@mixin grid($columnas: 1, $gap: 5rem /*parametro con contenido por default $gap: 5rem*/){
+    display: grid;
+    grid-template-columns: repeat($columnas, 1fr);
+    gap: $gap;
+}
+
+// listas
+@mixin resetear-lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
