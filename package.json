@@ -16,8 +16,11 @@
   "author": "Brayan Uriel Ramirez Guerrero (Urielozeck)",
   "license": "ISC",
   "devDependencies": {
+    "glob": "^10.4.1",
     "gulp": "^5.0.0",
     "gulp-sass": "^5.1.0",
-    "sass": "^1.77.4"
+    "gulp-terser": "^2.1.0",
+    "sass": "^1.77.4",
+    "sharp": "^0.33.4"
   }
 }
